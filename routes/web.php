@@ -5,6 +5,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::view('contact','contact');
 Route::view('about','about');
 Route::view('layout','layout');
