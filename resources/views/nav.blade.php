@@ -6,13 +6,13 @@
     <div id="my-nav" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="customers">Customer List<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/customers">Customer List<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="contact">Contact <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/contact">Contact <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="about">About-us <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/about">About-us <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>

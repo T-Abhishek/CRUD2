@@ -9,7 +9,7 @@ use App\Customer;
 
 class CustomerController extends Controller
 {
-   public function list(){
+   public function index (){
 
    //$customers= Customer::all();
 
@@ -17,21 +17,35 @@ class CustomerController extends Controller
 
     //return view('internals.customer',['cus'=>$customers]);
 
-   $activeCustomer=Customer::active()->get();
-   $inactiveCustomer=Customer::inactive()->get();
-   $companies = Company::all();
-
-   //  return view('internals.customer',
+    //  return view('internals.customer',
    //  ['active'=>$activeCustomer],
    //  ['inactive'=>$inactiveCustomer],);
 
-   return view('internals.customer',
-   compact('activeCustomer','inactiveCustomer','companies'));
+   // $activeCustomer=Customer::active()->get();
+   // $inactiveCustomer=Customer::inactive()->get();
+   // $companies = Company::all();
+
+   // return view('customers.index',
+   // compact('activeCustomer','inactiveCustomer','companies'));
+
+   $customers=Customer::all();
+
+   return view('customers.index',compact('customers'));
 
 
    }
 
+   public function create(){
+
+      $companies = Company::all();
+      return view('customers.create',compact('companies'));
+   }
+
+
+
+
    public function store(){
+
       $data=request()->validate([ 
          'name'=> 'required|min:3',
          'email'=>'required|email',
@@ -40,17 +54,25 @@ class CustomerController extends Controller
 
       Customer::create($data);
 
-
       // $customer=new Customer();
       // $customer->name=request('name');
       // $customer->email=request('email');
       // $customer->active=request('active');
       // $customer->save();
 
-      return back();
-
+      return redirect('customers');
 
    //  dd(request('name'));
-
+   
    }
+
+   public function show(Customer $customer){
+      // $customer=Customer::find($customer);
+      // $customer=Customer::where('id',$customer)->firstOrFail();
+
+   
+      return view('customers.show',compact('customer'));
+   }
+
+
 }

@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title','Customers List')
+@section('title','Add New Customer')
 
 
 @section('content')
@@ -8,9 +8,9 @@
       <br>
       <br>
       <br>
-      <h4>Customers List</h4>
+      <h4>Add New Customer</h4>
 
-    <form method="post" action="customers">
+    <form method="post" action="/customers">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" value="{{old('name')}}" name="name" placeholder="Enter name" >
@@ -50,46 +50,6 @@
   <hr>
    
 
-  <div class="row">
-    <div class="col-6">
-    <h3>Active Customers</h3>
-    <ul >
-      
-        @foreach($activeCustomer as $act)
-            <li class="">{{$act->name}} <span class="text-muted">({{$act->company->name}}) </span></li>
-        @endforeach
-    </ul></div>
-    <div class="col-6">
-    <h3>Inactive Customers</h3>
-    
-    <ul >
-        @foreach($inactiveCustomer as $inact)
-            <li class="">{{$inact->name}} <span class="text-muted">({{$inact->company->name}}) </span></li>
-        @endforeach
-    </ul>
-    </div>
-  </div>
-  
-
-  <div class="row">
-    <div class="col-12">
-   
-    <ul >
-      
-        @foreach($companies as $company)
-        <h3>{{$company->name}} </h3>
-           <ul>
-           @foreach($company->customers as $cust)
-            <li class=""> {{$cust->name}}  </li>
-        @endforeach
-           </ul>
-        @endforeach
-    </ul>
-  </div>
-
-    
-    
-    </div>
       
 
 
