@@ -17,13 +17,14 @@ class CustomerController extends Controller
 
     //return view('internals.customer',['cus'=>$customers]);
 
-    //  return view('internals.customer',
-   //  ['active'=>$activeCustomer],
-   //  ['inactive'=>$inactiveCustomer],);
 
    // $activeCustomer=Customer::active()->get();
    // $inactiveCustomer=Customer::inactive()->get();
    // $companies = Company::all();
+
+    //  return view('internals.customer',
+   //  ['active'=>$activeCustomer],
+   //  ['inactive'=>$inactiveCustomer],);
 
    // return view('customers.index',
    // compact('activeCustomer','inactiveCustomer','companies'));
@@ -38,7 +39,8 @@ class CustomerController extends Controller
    public function create(){
 
       $companies = Company::all();
-      return view('customers.create',compact('companies'));
+      $customer = new Customer();
+      return view('customers.create',compact('companies','customer'));
    }
 
 
@@ -52,7 +54,7 @@ class CustomerController extends Controller
          'active'=>'required',
          'company_id'=>'required']);
 
-      Customer::create($data);
+      Customer::create($this->validateRequest());
 
       // $customer=new Customer();
       // $customer->name=request('name');
@@ -73,6 +75,41 @@ class CustomerController extends Controller
    
       return view('customers.show',compact('customer'));
    }
+
+   public function edit(Customer $customer){
+
+      $companies = Company::all();
+      return view('customers.edit',compact('customer','companies'));
+   }
+
+
+   public function update(Customer $customer){
+
+      $customer->update($this->validateRequest());
+
+      return redirect('customers/'.$customer->id);
+   }
+
+
+   private function validateRequest(){
+
+      return request()->validate([ 
+         'name'=> 'required|min:3',
+         'email'=>'required|email',
+         'active'=>'required',
+         'company_id'=>'required'
+      ]);
+   }
+
+
+   public function destroy(Customer $customer)
+    {
+      //   $this->authorize('delete', $customer);
+
+        $customer->delete();
+
+        return redirect('customers');
+    }
 
 
 }

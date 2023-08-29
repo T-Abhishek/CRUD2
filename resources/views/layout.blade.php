@@ -14,14 +14,21 @@
 </head>
 
   <body>
-      
-  <div >
-
-  @include('nav')
-  </div>
-
+      <br>
+      <br>
+      <br>
+     
   <div class="container">
-    @yield('content')
+  @include('nav')
+
+    @if(session()->has('message'))
+        <div class="alert alert-success" role="alert">
+            <strong>Success</strong> {{ session()->get('message') }}
+        </div>
+    @endif
+
+  
+  @yield('content')
   </div>
    
   </body>
