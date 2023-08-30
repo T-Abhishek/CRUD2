@@ -8,10 +8,11 @@ Route::get('/', function () {
 
 Route::get('contact', 'ContactFormController@create')->name('contact.create');
 Route::post('contact', 'ContactFormController@store')->name('contact.store');
-
+Route::view('about','about')->name('about');;
 
 // Route::view('contact','contact');
-Route::view('about','about');
+// Route::view('about','about')->middleware('test');
+
 // Route::view('layout','layout');
 
 // Route::get('customers','CustomerController@list');
@@ -27,3 +28,7 @@ Route::view('about','about');
 
 Route::resource('customers','CustomerController');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

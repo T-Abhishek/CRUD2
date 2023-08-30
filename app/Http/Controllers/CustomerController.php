@@ -9,7 +9,17 @@ use App\Customer;
 
 class CustomerController extends Controller
 {
-   public function index (){
+
+
+   public function __construct()
+   {
+      // $this->middleware('auth');
+      $this->middleware('auth')->except(['index']);
+
+      
+   } 
+   
+  public function index (){
 
    //$customers= Customer::all();
 

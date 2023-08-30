@@ -1,10 +1,11 @@
-@extends('layout')
+@extends('layouts.app')
 @section('title','Contact us')
 
 @section('content')
 
     <h2>Contact Us</h2>
-    <form action="" method="POST">
+    @if( ! session()->has('message'))
+    <form action="{{route('contact.store')}}" method="POST">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" value="{{ old('name') }}" class="form-control">
@@ -28,5 +29,6 @@
 
             <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
+        @endif
 @endsection
 
